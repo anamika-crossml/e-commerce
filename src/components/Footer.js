@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Link, Grid } from '@mui/material';
+import { Container, Typography, Grid } from '@mui/material';
 
 const Footer = () => {
   return (
@@ -15,8 +15,8 @@ const Footer = () => {
           <Grid item xs={12} sm={4}>
             <Typography variant="h6">Contact Us</Typography>
             <Typography variant="body2">
-              Email: info@example.com<br />
-              Phone: (123) 456-7890
+              Email:  nainanamika168@gmail.com<br />
+              Phone: +91 7892301930
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
