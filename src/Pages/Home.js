@@ -1,15 +1,13 @@
-import React from 'react'
-import ImageSlider from '../components/ImageSlider'
 
+import Footer from '../components/Footer'
+import ImageSlider from '../components/ImageSlider'
 const Home = () => {
   return (
     <>
- <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-  <ImageSlider/>
-  </div>
-    </>
-
+      <ImageSlider />
+      <Footer/>
+  
+  </>
   )
 }
-
 export default Home

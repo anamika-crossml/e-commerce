@@ -4,7 +4,7 @@ import { List, ListItem, ListItemText, AppBar, Toolbar, Typography } from "@mui/
 
 const Nav = () => {
   return (
-    <AppBar position="fixed" style={{ backgroundColor: "#f8f8f8", zIndex: 100  }}>
+    <AppBar position="fixed" style={{ backgroundColor: "#F8F8F8", zIndex: 100 }}>
       <Toolbar  style={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6" color="primary" style={{ marginLeft: "15px" }}>
             Fitswell
@@ -16,14 +16,14 @@ const Nav = () => {
           <ListItem component={NavLink} to="/about" style={{ margin: "0 10px" }}>
             <ListItemText primary="About" />
           </ListItem>
+          <ListItem component={NavLink} to="/contact" style={{ margin: "0 10px" }}>
+            <ListItemText primary="Contact" />
+          </ListItem>
           <ListItem component={NavLink} to="/services" style={{ margin: "0 10px" }}>
             <ListItemText primary="Services" />
           </ListItem>
           <ListItem component={NavLink} to="/portfolio" style={{ margin: "0 10px" }}>
             <ListItemText primary="Portfolio" />
-          </ListItem>
-          <ListItem component={NavLink} to="/contact" style={{ margin: "0 10px" }}>
-            <ListItemText primary="Contact" />
           </ListItem>
         </List>
       </Toolbar>
@@ -32,3 +32,10 @@ const Nav = () => {
 };
 
 export default Nav;
+
+
+
+
+
+
+
