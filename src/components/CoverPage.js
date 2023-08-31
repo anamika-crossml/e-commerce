@@ -34,7 +34,7 @@ const CoverPage = () => {
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </div>  
   );
 }
 
