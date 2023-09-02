@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Card, CardMedia, Container, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
@@ -14,65 +7,34 @@ import img2 from "../images/leather_detail_jacket_1.jpg";
 import img3 from "../images/oak_graf_lantz_loak_city_tote_splattered_paint_1.jpg";
 import img4 from "../images/soleil_kanga_1.jpg";
 import img5 from "../images/handstiched_boiled_wool_crop_top_1.jpg";
-
-
+import { Link } from "react-router-dom";
 const Latest = () => {
-  const [hoveredIndex, setHoveredIndex] = useState("-1"); 
+  const [hoveredIndex, setHoveredIndex] = useState("-1");
   const [flippedIndex, setFlippedIndex] = useState(-1);
-
-
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
-
   const handleMouseLeave = () => {
     setHoveredIndex(-1);
   };
-
   const handleClick = (index) => {
     setFlippedIndex(index === flippedIndex ? -1 : index);
   };
-
-  
-  
-
   const headingStyle = {
-    marginTop: "100px",
     marginBottom: "20px", // Adjusted margin
     fontWeight: "bold",
     color: "#333",
   };
-
   const cardStyle = {
-    height: "500px",
-    margin: "8px", // Adjust margin for slight distance
-    transformStyle: "preserve-3d", // Enable 3D transformation
-    transition: "transform 0.5s ease"
-  }; 
-
-   const flippedCardStyle = {
+    height: "400px",
+    margin: "8px",
+    transformStyle: "preserve-3d",
+    transition: "transform 0.5s ease",
+  };
+  const flippedCardStyle = {
     ...cardStyle,
-    transform: "rotateY(180deg)", // Rotate the card on Y-axis for the flip
+    transform: "rotateY(180deg)",
   };
-
-
-  const itemNameStyle = {
-    fontSize: "12px",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    color: "#666",
-    lineHeight: 1.1,
-    minHeight: "51px",
-    margin: 0,
-    textAlign: "left",
-  };
-
-  const itemPriceStyle = {
-    fontSize: "15px",
-    color: "#967969",
-    fontWeight: "bold",
-  };
-
   const iconContainerStyle = {
     position: "absolute",
     top: "50%",
@@ -84,9 +46,27 @@ const Latest = () => {
     gap: "10px",
     color: "white",
   };
-
+  const itemNameStyle = {
+    fontSize: "12px",
+    fontWeight: "bold",
+    fontStyle: "italic",
+    color: "#666",
+    lineHeight: 1.1,
+    minHeight: "51px",
+    margin: "1px 0",
+    textAlign: "left",
+    paddingLeft: "8px",
+  };
+  const itemPriceStyle = {
+    fontSize: "14px",
+    color: "#967969",
+    fontWeight: "bold",
+    textAlign: "left",
+    paddingLeft: "8px",
+    marginBottom: "12px",
+    margin: "1px 0",
+  };
   const images = [img1, img2, img3, img4, img5];
-  
   const itemNames = [
     "Kato Trouser",
     "Leather Detail Jacket",
@@ -96,74 +76,131 @@ const Latest = () => {
   ];
   const prices = ["$ 92.00", "$ 112.00", "$ 152.00", "$ 98.00", "$ 85.00"];
 
+  const detailPageUrls = [
+    "/detailPage1",
+    "/detailPage2", 
+    "/detailPage3", 
+    "/detailPage4", 
+    "/detailPage5", 
+  ];
+
   return (
     <>
-      <Container maxWidth={false}>
-      <Typography variant="h3" align="center" style={headingStyle}>
-        Shop The Latest
-      </Typography>
-      <Grid container spacing={1} justifyContent="center">
-        {/* Add justifyContent */}
-        {images.map((image, index) => (
-          <Grid
-            key={index}
-            item
-            xs={12}
-            sm={4}
-            md={2}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick(index)}
-            style={{
-              position: "relative",
-              cursor: "pointer", // Change cursor to hand icon on hover
-            }}
-          >
-            <div style={{ position: "relative" }}>
-            <Card
-            style={hoveredIndex === index ? flippedCardStyle : cardStyle}
-          >
-             <div style={{ transform: "rotateY(0deg)", backfaceVisibility: "hidden" }}>
-                <CardMedia component="img" height="400" image={image} />
-                <CardContent>
-                  <Typography variant="subtitle2" style={itemNameStyle}>
-                    {itemNames[index]}
-                  </Typography>
-                  <Typography variant="body2" style={itemPriceStyle}>
-                    {prices[index]}
-                  </Typography>
-                </CardContent>
-                </div>
-              </Card>
-              {hoveredIndex === index && (
-             <div style={iconContainerStyle}>
-             <FontAwesomeIcon icon={faHeart} style={{ fontSize: "24px" }}  />
-             <div>
+      <Container
+        maxWidth={false}
+        style={{ marginTop: "100px", marginBottom: "100px" }}
+      >
+        <Typography variant="h2" align="center" style={headingStyle}>
+          Shop The Latest
+        </Typography>
+        <Grid container spacing={1} justifyContent="center">
+          {images.map((image, index) => (
+            <Grid
+              key={index}
+              item
+              xs={12}
+              sm={4}
+              md={2}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleClick(index)}
+              style={{
+                position: "relative",
+                cursor: "pointer",
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <Card
+                  style={hoveredIndex === index ? flippedCardStyle : cardStyle}
+                >
+                  <CardMedia
+                    component="img"
+                    height="400"
+                    image={image}
+                    style={{
+                      transform:
+                        hoveredIndex === index ? "rotateY(180deg)" : "none",
+                      transition: "transform 0.5s ease",
+                      backfaceVisibility: "visible",
+                    }}
+                  />
+                </Card>
+                {hoveredIndex === index && (
+                  <div style={iconContainerStyle}>
                     <FontAwesomeIcon
-                      icon={faShoppingBag}
+                      icon={faHeart}
                       style={{ fontSize: "24px" }}
                     />
-                    <span
+                    <div
+                      onMouseEnter={() => handleMouseEnter(index)} // Triggered when user hovers over the shopping bag icon
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <FontAwesomeIcon
+                        icon={faShoppingBag}
+                        style={{
+                          fontSize: "24px",
+                          position: "relative",
+                        }}
+                      />
+                      {hoveredIndex === index && (
+                        <Typography
+                          style={{
+                            fontSize: "10px",
+                            textAlign: "center",
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            color: "white",
+                            backgroundColor: "rgba(0, 0, 0, 0.8)",
+                            padding: "4px 8px",
+                            borderRadius: "4px",
+                            display: "block", // Display the text when the user hovers over the icon
+                          }}
+                        >
+                          ADD TO CART
+                        </Typography>
+                      )}
+                    </div>
+                    <Typography
+                      style={{ fontSize: "10px", textAlign: "center" }}
+                    >
+                      QUICK
+                      <br /> VIEW
+                    </Typography>
+                  </div>
+                )}
+                <div>
+                  <Link to={`${detailPageUrls[index]}`}>
+                    {" "}
+                    {/* Link to ItemDetail1 */}
+                    <Typography
+                      variant="subtitle2"
                       style={{
-                        fontSize: "10px",
-                        textAlign: "center",
+                        ...itemNameStyle,
                       }}
                     >
-                      ADD TO BAG
-                    </span>
-                  </div>
-             <Typography style={{ fontSize: "10px", textAlign: "center" }}>
-              QUICK<br/> VIEW
-             </Typography>
-           </div>
-              )}
-            </div>
-          </Grid>
-        ))}
-      </Grid>
-    </Container></>
-  
+                      {itemNames[index]}
+                    </Typography>
+                  </Link>
+
+                 
+
+                  <Typography
+                    variant="body2"
+                    style={{
+                      ...itemPriceStyle, // Apply itemPriceStyle
+                    }}
+                  >
+                    {prices[index]}
+                  </Typography>
+                </div>
+              </div>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
   );
 };
-
 export default Latest;

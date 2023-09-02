@@ -8,7 +8,13 @@ import Shop from './Pages/Shop';
 import Women from './Pages/Women';
 import Men from './Pages/Men';
 import Blog from './Pages/Blog';
+import DetailPage1 from './DetailPage/DetailPage1';
+import DetailPage2 from './DetailPage/DetailPage2';
+import DetailPage3 from './DetailPage/DetailPage3';
+import DetailPage4 from './DetailPage/DetailPage4';
+import DetailPage5 from './DetailPage/DetailPage5';
 // import DetailPage from './components/DetailPage';
+
 
 
 
@@ -22,7 +28,12 @@ function App() {
           <Route path="/women" element={<Women />} />
           <Route path="/men" element={<Men />} />
           <Route path="/blog" element={<Blog />} />
-          {/* <Route path='/detailepage' element={<DetailPage />} /> */}
+          <Route path="/detailpage1" element={<DetailPage1 />} />
+          <Route path="/detailpage2" element={<DetailPage2 />} />
+          <Route path="/detailpage3" element={<DetailPage3 />} />
+          <Route path="/detailpage4" element={<DetailPage4 />} />
+          <Route path="/detailpage5" element={<DetailPage5 />} />
+     
         </Routes>
       </Router>
   );
