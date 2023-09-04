@@ -6,25 +6,17 @@ import {
   Divider,
   Grid,
   IconButton,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
+  Modal
 } from "@mui/material";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 //images
 import img1 from "../images/kato_trouser_1.jpg";
-import img2 from "../images/kato_trouser_1-150x150.jpg";
-import img3 from "../images/kato_trouser_2-150x150.jpg";
-import img4 from "../images/kato_trouser_3-150x150.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CloseIcon from "@mui/icons-material/Close";
 
-const DetailPage1 = () => {
+const QuickView = (isOpen, onClose) => {
   const [isZoomed, setIsZoomed] = useState(false);
   const [count, setCount] = useState(1);
 
@@ -74,13 +66,21 @@ const DetailPage1 = () => {
     marginRight: "10px", //
   };
 
+  const handleClose = () => {
+    onClose(); // Close the modal
+  };
+
   return (
     <>
+    <Modal
+        open={isOpen}
+        Close={onClose}
+      >
      <Grid
       container
       style={{ display: "flex", marginTop: "300px", marginLeft: "200px" }}
     >
-      <Grid item xs={4}>
+      <Grid item xs={4} style={{width:'60%'}}>
         <Card sx={{ width: "65%", height: "100%" }}>
           <CardMedia
             component="img"
@@ -94,39 +94,12 @@ const DetailPage1 = () => {
             }}
           />
         </Card>
-      </Grid>
-      <Grid item xs={4}>
-        <Grid container item xs={12} flexDirection="column" spacing={2}>
-          <Grid item xs={4}>
-            <Card sx={{ width: "35%", height: "40%", marginLeft: "-200px" }}>
-              <CardMedia component="img" src={img2} alt="Image 2" />
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card
-              sx={{
-                width: "35%",
-                height: "40%",
-                marginLeft: "-200px",
-                marginTop: "60px",
-              }}
-            >
-              <CardMedia component="img" src={img3} alt="Image 3" />
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card
-              sx={{
-                width: "35%",
-                height: "40%",
-                marginLeft: "-200px",
-                marginTop: "60px",
-              }}
-            >
-              <CardMedia component="img" src={img4} alt="Image 4" />
-            </Card>
-          </Grid>
-        </Grid>
+        <IconButton
+            style={{ position: "absolute", top: "10px", right: "10px" }}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>
       </Grid>
       <Grid item xs={4} sx={{ marginLeft: "-600px" }}>
         <Typography
@@ -151,6 +124,7 @@ const DetailPage1 = () => {
             textTransform: "none",
             color: "#404040",
           }}
+          //dont do anything from your own i just want when a user clicks on quick view it will opena  modal and the contetn of that modal is in QuickView file pelase implement this only
         >
           Wool & Cotton Jacket in a minimalistic one-side crop
           <br /> line with leather details on the pocket and the collar.
@@ -250,41 +224,12 @@ const DetailPage1 = () => {
         </Typography>
       </Grid>
     </Grid>
-<Grid>
- <Typography variant="h6" style={{ marginTop: '60px', marginLeft: '300px', color: '#a3865b', fontWeight: 'bold', fontFamily: 'Montserrat, sans-serif', fontSize: '15px', fontStyle: 'italic' }}>
-        Additional information
-      </Typography>
-  <TableContainer component={Paper} style={{marginTop: '40px', marginLeft: '290px',  marginBottom:'300px' }}>
-  <Table style={{ border: 'none' }}>
-          <TableBody>
-            <TableRow>        
-              <TableCell>FABRIC</TableCell>
-              <TableCell>
-                <Button variant="text" onClick={handleButtonClick} style={{color: '#a3865b'}}>Boiled Wool</Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>COLOR</TableCell>
-              <TableCell>
-                <Button variant="text" onClick={handleButtonClick}  style={{color: '#a3865b'}}>Black</Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>SIZE</TableCell>
-              <TableCell  >
-                <Typography  variant="text" style={{color: '#a3865b'}}> 
-                  L,M,S,XL,XS
-                </Typography>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
- </Grid>
+    </Modal>
+    
     </>
    
     
   );
 };
 
-export default DetailPage1;
+export default QuickView;

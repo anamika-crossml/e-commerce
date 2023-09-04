@@ -1,40 +1,65 @@
-import { Card, CardMedia, Container, Grid, Typography } from "@mui/material";
+import { Button, Card, CardMedia, Container, Grid, Icon, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import {MinusOutlined} from '@ant-design/icons';
+import { Link } from "react-router-dom";
 import img1 from "../images/kato_trouser_1.jpg";
 import img2 from "../images/leather_detail_jacket_1.jpg";
 import img3 from "../images/oak_graf_lantz_loak_city_tote_splattered_paint_1.jpg";
 import img4 from "../images/soleil_kanga_1.jpg";
 import img5 from "../images/handstiched_boiled_wool_crop_top_1.jpg";
-import { Link } from "react-router-dom";
+import QuickView from "../DetailPage/QuckView";
+
+
 const Latest = () => {
   const [hoveredIndex, setHoveredIndex] = useState("-1");
   const [flippedIndex, setFlippedIndex] = useState(-1);
+  const [isHoveringShoppingBag, setIsHoveringShoppingBag] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
+
   const handleMouseLeave = () => {
     setHoveredIndex(-1);
   };
+
   const handleClick = (index) => {
     setFlippedIndex(index === flippedIndex ? -1 : index);
   };
+
+  const handleQuickView = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
+  };
+
+
   const headingStyle = {
     marginBottom: "20px", // Adjusted margin
     fontWeight: "bold",
     color: "#333",
   };
+
   const cardStyle = {
     height: "400px",
     margin: "8px",
     transformStyle: "preserve-3d",
     transition: "transform 0.5s ease",
   };
+
   const flippedCardStyle = {
     ...cardStyle,
     transform: "rotateY(180deg)",
   };
+
   const iconContainerStyle = {
     position: "absolute",
     top: "50%",
@@ -46,6 +71,7 @@ const Latest = () => {
     gap: "10px",
     color: "white",
   };
+
   const itemNameStyle = {
     fontSize: "12px",
     fontWeight: "bold",
@@ -57,6 +83,7 @@ const Latest = () => {
     textAlign: "left",
     paddingLeft: "8px",
   };
+
   const itemPriceStyle = {
     fontSize: "14px",
     color: "#967969",
@@ -66,7 +93,9 @@ const Latest = () => {
     marginBottom: "12px",
     margin: "1px 0",
   };
+
   const images = [img1, img2, img3, img4, img5];
+
   const itemNames = [
     "Kato Trouser",
     "Leather Detail Jacket",
@@ -74,14 +103,15 @@ const Latest = () => {
     "Soleil Kanga",
     "Handstitched Boiled Wool Crop Top",
   ];
+
   const prices = ["$ 92.00", "$ 112.00", "$ 152.00", "$ 98.00", "$ 85.00"];
 
   const detailPageUrls = [
     "/detailPage1",
-    "/detailPage2", 
-    "/detailPage3", 
-    "/detailPage4", 
-    "/detailPage5", 
+    "/detailPage2",
+    "/detailPage3",
+    "/detailPage4",
+    "/detailPage5",
   ];
 
   return (
@@ -132,8 +162,8 @@ const Latest = () => {
                       style={{ fontSize: "24px" }}
                     />
                     <div
-                      onMouseEnter={() => handleMouseEnter(index)} // Triggered when user hovers over the shopping bag icon
-                      onMouseLeave={handleMouseLeave}
+                     onMouseEnter={() => setIsHoveringShoppingBag(true)} 
+                     onMouseLeave={() => setIsHoveringShoppingBag(false)}
                     >
                       <FontAwesomeIcon
                         icon={faShoppingBag}
@@ -142,32 +172,28 @@ const Latest = () => {
                           position: "relative",
                         }}
                       />
-                      {hoveredIndex === index && (
+                       {isHoveringShoppingBag && (
                         <Typography
-                          style={{
-                            fontSize: "10px",
-                            textAlign: "center",
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                            color: "white",
-                            backgroundColor: "rgba(0, 0, 0, 0.8)",
-                            padding: "4px 8px",
-                            borderRadius: "4px",
-                            display: "block", // Display the text when the user hovers over the icon
-                          }}
+                        style={{
+                          fontSize: "8px",
+                          padding: "4px 8px",
+                          borderRadius: "4px",
+                          backgroundColor: "white",
+                          color: "#333",
+                          display: "block",
+                        }}
                         >
                           ADD TO CART
                         </Typography>
                       )}
-                    </div>
-                    <Typography
-                      style={{ fontSize: "10px", textAlign: "center" }}
-                    >
-                      QUICK
-                      <br /> VIEW
-                    </Typography>
+                    </div>   
+        <div>
+          {/* Render item content */}
+          <Button onClick={handleQuickView}>Quick View</Button>
+        </div>
+        {isModalOpen && (
+        <QuickView isOpen={isModalOpen} onClose={handleCloseModal} selectedItem={selectedItem} />
+      )}
                   </div>
                 )}
                 <div>
@@ -183,13 +209,15 @@ const Latest = () => {
                       {itemNames[index]}
                     </Typography>
                   </Link>
-
-                 
-
+                  <IconButton>
+                    <Icon >
+                   <MinusOutlined/>
+                    </Icon>
+                  </IconButton>
                   <Typography
                     variant="body2"
                     style={{
-                      ...itemPriceStyle, // Apply itemPriceStyle
+                      ...itemPriceStyle, 
                     }}
                   >
                     {prices[index]}
@@ -203,4 +231,5 @@ const Latest = () => {
     </>
   );
 };
+
 export default Latest;

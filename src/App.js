@@ -13,7 +13,8 @@ import DetailPage2 from './DetailPage/DetailPage2';
 import DetailPage3 from './DetailPage/DetailPage3';
 import DetailPage4 from './DetailPage/DetailPage4';
 import DetailPage5 from './DetailPage/DetailPage5';
-// import DetailPage from './components/DetailPage';
+import QuickView from './DetailPage/QuckView';
+
 
 
 
@@ -33,6 +34,9 @@ function App() {
           <Route path="/detailpage3" element={<DetailPage3 />} />
           <Route path="/detailpage4" element={<DetailPage4 />} />
           <Route path="/detailpage5" element={<DetailPage5 />} />
+          <Route path="/quickview" element={<QuickView />} />
+          
+
      
         </Routes>
       </Router>
