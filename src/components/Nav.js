@@ -1,5 +1,3 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
 import {
   List,
   ListItem,
@@ -11,20 +9,31 @@ import {
   Divider,
   Tooltip,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
 const Nav = () => {
+
   const activeStyle = { color: "brown" };
   const listItemStyle = { color: "grey", transition: "color 0.3s" };
-  const listItemHoverStyle = { color: "brown", transition: "color 0.3s" };
+
+    /**
+   * @method [handleMouseEnter] used to add brown colour on hover   .
+   */
   const handleMouseEnter = (e) => {
     e.target.style.color = "brown";
   };
+
+   /**
+   * @method [handleMouseLeave] used to change the colour
+   */
   const handleMouseLeave = (e) => {
     e.target.style.color = "grey";
   };
+
   return (
     <AppBar
       position="fixed"
@@ -135,4 +144,5 @@ const Nav = () => {
     </AppBar>
   );
 };
+
 export default Nav;

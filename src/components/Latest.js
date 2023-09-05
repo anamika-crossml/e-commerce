@@ -1,4 +1,4 @@
-import { Button, Card, CardMedia, Container, Grid, Icon, IconButton, Typography } from "@mui/material";
+import {Card, CardMedia, Container, Grid, Icon, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
@@ -9,41 +9,38 @@ import img2 from "../images/leather_detail_jacket_1.jpg";
 import img3 from "../images/oak_graf_lantz_loak_city_tote_splattered_paint_1.jpg";
 import img4 from "../images/soleil_kanga_1.jpg";
 import img5 from "../images/handstiched_boiled_wool_crop_top_1.jpg";
-import QuickView from "../DetailPage/QuckView";
+// import QuickView from "../DetailPage/QuckView";
 
 
 const Latest = () => {
   const [hoveredIndex, setHoveredIndex] = useState("-1");
   const [flippedIndex, setFlippedIndex] = useState(-1);
   const [isHoveringShoppingBag, setIsHoveringShoppingBag] = useState(false); 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [selectedItem, setSelectedItem] = useState(null);
 
+  /**
+   * @method [handleMouseEnter] used to handle the index while hovering .
+   */
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
-
+  /**
+   * @method [handleMouseLeave] used to handle the index after hovering  .
+   */
   const handleMouseLeave = () => {
     setHoveredIndex(-1);
   };
 
+  /**
+   * @method [handleClick] used to handle onclick while flipping the card   .
+   */
   const handleClick = (index) => {
     setFlippedIndex(index === flippedIndex ? -1 : index);
   };
 
-  const handleQuickView = (item) => {
-    setSelectedItem(item);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedItem(null);
-  };
-
-
   const headingStyle = {
-    marginBottom: "20px", // Adjusted margin
+    marginBottom: "20px", // Adjusted margin                                                                         
     fontWeight: "bold",
     color: "#333",
   };
@@ -187,13 +184,12 @@ const Latest = () => {
                         </Typography>
                       )}
                     </div>   
-        <div>
-          {/* Render item content */}
-          <Button onClick={handleQuickView}>Quick View</Button>
-        </div>
-        {isModalOpen && (
-        <QuickView isOpen={isModalOpen} onClose={handleCloseModal} selectedItem={selectedItem} />
-      )}
+                    <Typography
+                      style={{ fontSize: "10px", textAlign: "center" }}
+                    >
+                      QUICK
+                      <br /> VIEW
+                    </Typography>
                   </div>
                 )}
                 <div>
